@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace Palindrome.Objects
 {
@@ -14,16 +15,15 @@ namespace Palindrome.Objects
 
     public string ToLowerAndTrim()
     {
-      _inputString = _inputString.ToLower();
-      _inputString = _inputString.Replace(" ", "");
-      Console.WriteLine(_inputString);
-      return _inputString;
+      string modified = _inputString.ToLower();
+      modified = Regex.Replace(modified, "[^A-Za-z0-9]", "");
+      Console.WriteLine(modified);
+      return modified;
     }
 
     public bool Checker()
     {
-      _characters = _inputString.ToCharArray();
-      Console.WriteLine(_characters);
+      _characters = ToLowerAndTrim().ToCharArray();
       int back = _characters.Length - 1;
       for(int forward = 0; forward < _characters.Length / 2; forward++)
       {
@@ -34,6 +34,11 @@ namespace Palindrome.Objects
         back--;
       }
       return true;
+    }
+
+    public string GetInput()
+    {
+      return _inputString;
     }
   }
 }

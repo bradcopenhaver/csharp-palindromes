@@ -1,0 +1,18 @@
+<h1>Palindrome Check-O-Matic</h1>
+<form action="/result" method="post">
+  <label for="input">Enter the text you wish to check.</label>
+  <input type="text" name="input">
+  <button type="submit">Check!</button>
+</form>
+
+@if (Model != null)
+{
+  @if (Model.Checker())
+  {
+    <p>Congratulations! The letters in @Model.GetInput() make a palindrome!</p>
+  }
+  else
+  {
+    <p>Sorry. The letters in @Model.GetInput() do not make a palindrome. :(</p>
+  }
+}
